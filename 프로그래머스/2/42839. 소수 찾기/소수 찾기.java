@@ -11,14 +11,13 @@ class Solution {
     
     public void backTracking(int stage, String numbers, boolean[] visited, String cur){
         
-        if(cur.length() != 0 && stage <= numbers.length()){
+        if(cur.length() != 0){
             int num = Integer.parseInt(cur);
             if(isPrime(num)){
-                System.out.println(num);
                 primes.add(num);
             }
         }
-        if(stage == numbers.length()) return;
+        if(stage > numbers.length()) return;
         
         for(int i = 0; i < numbers.length(); i++){
             if(!visited[i]){

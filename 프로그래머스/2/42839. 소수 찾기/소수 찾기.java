@@ -4,35 +4,31 @@ class Solution {
     public int solution(String numbers) {
         primes = new HashSet<>();
         boolean[] visited = new boolean[numbers.length()];
-        backTracking(0, numbers, visited, "");
+        backTracking(numbers, visited, 0, "");
         
         return primes.size();
     }
     
-    public void backTracking(int stage, String numbers, boolean[] visited, String cur){
-        
-        if(cur.length() != 0){
-            int num = Integer.parseInt(cur);
-            if(isPrime(num)){
-                primes.add(num);
-            }
-        }
+    public void backTracking(String numbers, boolean[] visited, int stage, String cur){
         if(stage > numbers.length()) return;
+        
+        if(cur.length() > 0 && isPrime(Integer.parseInt(cur))){
+            primes.add(Integer.parseInt(cur));
+        }
         
         for(int i = 0; i < numbers.length(); i++){
             if(!visited[i]){
                 visited[i] = true;
-                backTracking(stage+1, numbers, visited, cur + numbers.charAt(i));
+                backTracking(numbers, visited, stage+1, cur+numbers.charAt(i));
                 visited[i] = false;
             }
         }
     }
     
     public boolean isPrime(int num){
-        if(num <= 1) return false;
-        for(int i = 2; i < num/2 + 1; i++){
-            if(num%i == 0)
-                return false;
+        if(num < 2) return false;
+        for(int i = 2; i < num/2+1; i++){
+            if(num%i == 0) return false;
         }
         return true;
     }

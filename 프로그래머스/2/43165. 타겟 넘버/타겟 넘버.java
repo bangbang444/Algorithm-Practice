@@ -1,34 +1,21 @@
-class Solution {
-    static boolean[] visited;
-    static int count;
-    static int[] numbersRef;
-    static int trg;
-        
+class Solution {    
+    static int answer;
     public int solution(int[] numbers, int target) {
-        visited = new boolean[numbers.length];
-        count = 0;
-        trg = target;
-        numbersRef = numbers;
-        
-        findTarget(0, 0, numbers.length);
-        
-        return count;
+        answer = 0;
+        findTarget(numbers, target, 0, 0);
+        return answer;
     }
     
-    static public void findTarget(int stage, int sum ,int n){
-        if(stage == n){
-            if(sum == trg){
-                count++;
-            }
+    public void findTarget(int[] numbers, int target, int sum, int stage){
+        if(stage == numbers.length){
+            if(sum == target)
+                answer++;
             return;
         }
         
-        if(!visited[stage]){
-            visited[stage] = true;
-            findTarget(stage+1, sum+numbersRef[stage],n);
-            findTarget(stage+1, sum-numbersRef[stage],n);
-            visited[stage] = false;
-        }
-        
+        findTarget(numbers, target, sum+numbers[stage], stage+1);
+        findTarget(numbers, target, sum-numbers[stage], stage+1);
     }
+    
+    
 }

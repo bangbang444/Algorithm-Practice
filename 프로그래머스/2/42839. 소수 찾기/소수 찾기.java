@@ -1,25 +1,26 @@
 import java.util.*;
 class Solution {
-    static Set<Integer> primes;
+    Set<Integer> primes;
     public int solution(String numbers) {
         primes = new HashSet<>();
         boolean[] visited = new boolean[numbers.length()];
-        backTracking(numbers, visited, 0, "");
+        
+        backTracking(numbers, visited, "");
         
         return primes.size();
     }
     
-    public void backTracking(String numbers, boolean[] visited, int stage, String cur){
-        if(stage > numbers.length()) return;
+    public void backTracking(String numbers, boolean[] visited, String cur){
         
-        if(cur.length() > 0 && isPrime(Integer.parseInt(cur))){
-            primes.add(Integer.parseInt(cur));
+        if(cur.length() != 0){
+            if(isPrime(Integer.parseInt(cur))) 
+                primes.add(Integer.parseInt(cur));
         }
         
         for(int i = 0; i < numbers.length(); i++){
             if(!visited[i]){
                 visited[i] = true;
-                backTracking(numbers, visited, stage+1, cur+numbers.charAt(i));
+                backTracking(numbers, visited, cur+numbers.charAt(i));
                 visited[i] = false;
             }
         }
@@ -32,4 +33,6 @@ class Solution {
         }
         return true;
     }
+    
+    
 }

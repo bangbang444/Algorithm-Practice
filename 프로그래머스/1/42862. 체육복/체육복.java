@@ -3,7 +3,7 @@ import java.util.*;
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
         int count = 0;
-        int[] m = new int[31]; // 0 초기화
+        int[] m = new int[31];
         Arrays.fill(m, 1);
         Arrays.sort(lost);
         Arrays.sort(reserve);
@@ -43,10 +43,3 @@ class Solution {
         return n - lost.length + count;
     }
 }
-
-/*
-n:7
-[2, 4]
-[1, 2, 3, 4, 5]
-
-*/

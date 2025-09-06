@@ -22,20 +22,16 @@ class Solution {
         }
         
         // 내림차순으로 정렬 후 출력
-        String preAnswer = combination.reverse().toString();
+        String answer = combination.reverse().toString();
         
-        if(preAnswer.equals("")){
+        if(answer.equals("")){
             return "-1";
         }
         
-        boolean isZero = true;
-        for(int i = 0; i < preAnswer.length(); i++){
-            if(preAnswer.charAt(i) != '0'){
-                isZero = false;
-                break;
-            }
+        if(answer.charAt(0) == '0'){
+            return "0";
         }
         
-        return isZero ? "0" : preAnswer;
+        return answer;
     }
 }

@@ -2,6 +2,8 @@ class Solution {
     public boolean solution(String s) {
         
         int size = s.length();
+        if(size != 4 && size != 6)
+            return false;
         
         for(int i = 0; i < size; i++){
             char ch = s.charAt(i);
@@ -10,9 +12,6 @@ class Solution {
             }
         }
         
-        if(size == 4 || size == 6)
-            return true;
-        else 
-            return false;
+        return true;
     }
 }

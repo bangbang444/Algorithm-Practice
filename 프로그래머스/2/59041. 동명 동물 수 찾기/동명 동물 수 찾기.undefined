@@ -1,0 +1,11 @@
+-- 코드를 입력하세요
+
+SELECT NAME, COUNT
+FROM
+    (   
+        SELECT NAME, COUNT(*) AS COUNT
+        FROM ANIMAL_INS
+        GROUP BY NAME
+    ) AS T
+WHERE COUNT >= 2 AND NAME IS NOT NULL
+ORDER BY NAME

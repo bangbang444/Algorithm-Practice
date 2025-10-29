@@ -8,17 +8,14 @@ class Solution {
         for(int i = 0; i < pl; i++){
             int count = 0;
             int cur = prices[i];
-            boolean isDown = false;
             for(int j = i+1; j < pl; j++){
                 count++;
                 if(prices[i] > prices[j]){
-                    answer[i] = count;
-                    isDown = true;
                     break;
                 }
                 
             }
-            if(!isDown) answer[i] = count;
+            answer[i] = count;
         }
         
         

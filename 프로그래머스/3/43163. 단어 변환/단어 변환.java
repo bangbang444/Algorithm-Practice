@@ -17,19 +17,20 @@ class Solution {
                 break;
             }
             
+            if(minCount > std.length()) {
+                continue;
+            }
+            
+            
             for(int i = 0; i < words.length; i++){
                 String cmpWord = words[i];
                 int count = 0;
-                
-                if(minCount > std.length()) break;
-                
+ 
                 // 단어 비교
                 for(int j = 0; j < std.length(); j++){
                     if(std.charAt(j) == cmpWord.charAt(j)) 
                         count++;
                 }
-
-                //System.out.println(std + " " + cmpWord + " " + count);
                 
                 if(count == std.length()-1){
                     queue.offer(new WordInfo(cmpWord, minCount+1));

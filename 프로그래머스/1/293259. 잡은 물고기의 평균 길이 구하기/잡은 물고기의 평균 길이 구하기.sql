@@ -1,0 +1,9 @@
+SELECT ROUND(AVG(T_LENGTH),2) AS AVERAGE_LENGTH
+FROM  (  SELECT ID,
+        CASE
+            WHEN LENGTH IS NULL
+            THEN 10
+            ELSE LENGTH
+        END AS T_LENGTH
+        FROM FISH_INFO
+      ) AS NF

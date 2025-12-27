@@ -1,12 +1,12 @@
 SELECT CAR_ID, 
         CASE
-            WHEN CAR_ID IN 
+            WHEN MAX
                 (
-                    SELECT CAR_ID
-                    FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
-                    WHERE '2022-10-16' BETWEEN START_DATE AND END_DATE
-                    ORDER BY CAR_ID
-                )
+                    CASE
+                        WHEN '2022-10-16' BETWEEN START_DATE AND END_DATE
+                        THEN 1 ELSE 0
+                    END
+                ) = 1
             THEN '대여중'
             ELSE '대여 가능'
         END AS AVAILABILITY

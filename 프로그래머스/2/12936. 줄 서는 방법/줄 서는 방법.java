@@ -9,19 +9,15 @@ class Solution {
         }
         
         k--;
-        int N = n;
-        int[] answer = new int[N];
+        int[] answer = new int[n];
         int idx = 0;
-        while(N > 0){
-            fact/=N;
+        while(n > 0){
+            fact/=n;
             int seq = (int)(k/fact);
-            
-            
-            
             answer[idx++] = list.get(seq);
             list.remove(seq);
-            k-= fact*seq;
-            N--;
+            k -= fact*seq;
+            n--;
        }
         
         return answer;

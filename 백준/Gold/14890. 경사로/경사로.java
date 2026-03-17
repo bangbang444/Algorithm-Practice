@@ -37,7 +37,7 @@ public class Main {
                     for(int k = j; k < N; k++){
                         if(compStd == map[i][k]) compCnt++;
                         if(compCnt >= L){
-                            for(int l = k; l-L+1 >= 0; l--) visited[l] = true;
+                            for(int l = k; l >= k-L+1; l--) visited[l] = true;
 
                             std = compStd;
                             break;
@@ -92,7 +92,7 @@ public class Main {
                     for(int k = j; k < N; k++){
                         if(compStd == map[k][i]) compCnt++;
                         if(compCnt >= L){
-                            for(int l = k; l-L+1 >= 0; l--) visited[l] = true;
+                            for(int l = k; l >= k-L+1; l--) visited[l] = true;
 
                             std = compStd;
                             break;

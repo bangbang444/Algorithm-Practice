@@ -18,35 +18,15 @@ public class Main {
             for(int j = 0; j < k; j++){
                 String[] cmd = br.readLine().split(" ");
                 String op = cmd[0];
-                Integer n = Integer.parseInt(cmd[1]);
+                int n = Integer.parseInt(cmd[1]);
 
                 if(op.equals("I")){
-                    minMap.put(n, minMap.getOrDefault(n, 0)+1);
-                    maxMap.put(n, maxMap.getOrDefault(n, 0)+1);
+                    insertCmd(n, minMap, maxMap);
                 }else if(op.equals("D")){
                     if(n == 1 && !maxMap.isEmpty()){
-                        int max = maxMap.firstKey();
-
-                        int cnt = maxMap.getOrDefault(max, 1);
-                        if(cnt <= 1){
-                            maxMap.remove(max);
-                            minMap.remove(max);
-                        }else{
-                            maxMap.put(max, maxMap.get(max)-1);
-                            minMap.put(max, minMap.get(max)-1);
-                        }
-
+                        deleteCmd(maxMap, minMap);
                     }else if(n == -1 && !minMap.isEmpty()){
-                        int min = minMap.firstKey();
-
-                        int cnt = minMap.getOrDefault(min, 1);
-                        if(cnt <= 1){
-                            maxMap.remove(min);
-                            minMap.remove(min);
-                        }else{
-                            maxMap.put(min, maxMap.get(min)-1);
-                            minMap.put(min, minMap.get(min)-1);
-                        }
+                        deleteCmd(minMap, maxMap);
                     }
                 }
             }
@@ -60,7 +40,25 @@ public class Main {
                 answer.append(maxMap.firstKey()).append(" ").append(minMap.firstKey()).append("\n");
             }
         }
-        answer.setLength(answer.length()-1);
-        System.out.println(answer);
+
+        System.out.println(answer.toString().trim());
+    }
+
+    private static void insertCmd(Integer n, TreeMap<Integer, Integer> minMap, TreeMap<Integer, Integer> maxMap) {
+        minMap.put(n, minMap.getOrDefault(n, 0)+1);
+        maxMap.put(n, maxMap.getOrDefault(n, 0)+1);
+    }
+
+    private static void deleteCmd(TreeMap<Integer, Integer> stdMap, TreeMap<Integer, Integer> sideMap){
+        int value = stdMap.firstKey();
+
+        int cnt = stdMap.getOrDefault(value, 1);
+        if(cnt <= 1){
+            stdMap.remove(value);
+            sideMap.remove(value);
+        }else{
+            stdMap.put(value, stdMap.get(value)-1);
+            sideMap.put(value, sideMap.get(value)-1);
+        }
     }
 }

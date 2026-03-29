@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 public class Main {
@@ -9,14 +10,15 @@ public class Main {
         int T = Integer.parseInt(br.readLine());
 
         StringBuilder answer = new StringBuilder();
+        StringTokenizer st;
         for(int i = 0; i < T; i++){
             int k = Integer.parseInt(br.readLine());
 
             TreeMap<Integer, Integer> map = new TreeMap<>();
             for(int j = 0; j < k; j++){
-                String[] cmd = br.readLine().split(" ");
-                String op = cmd[0];
-                int n = Integer.parseInt(cmd[1]);
+                st = new StringTokenizer(br.readLine());
+                String op = st.nextToken();
+                int n = Integer.parseInt(st.nextToken());
 
                 if(op.equals("I")){
                     insertCmd(n, map);
@@ -28,8 +30,6 @@ public class Main {
             // 후처리
             if(map.isEmpty()){
                 answer.append("EMPTY").append("\n");
-            }else if(map.size() == 1){
-                answer.append(map.firstKey()).append(" ").append(map.firstKey()).append("\n");
             }else{
                 answer.append(map.lastKey()).append(" ").append(map.firstKey()).append("\n");
             }

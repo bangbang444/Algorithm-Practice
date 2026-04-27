@@ -1,13 +1,18 @@
-SELECT ER.ID,
-    CASE
-        WHEN ER.RANKING <= 0.25 THEN 'CRITICAL'
-        WHEN ER.RANKING <= 0.50  THEN 'HIGH'
-        WHEN ER.RANKING <= 0.75  THEN 'MEDIUM'
-        ELSE 'LOW'
-    END AS COLONY_NAME
-FROM (
-    SELECT ID,
-        PERCENT_RANK() OVER (ORDER BY SIZE_OF_COLONY DESC) AS RANKING
+SELECT  ID,
+        CASE
+            WHEN ED.PCT >= 0 AND PCT <= 0.25
+            THEN 'CRITICAL'
+            WHEN ED.PCT <= 0.5
+            THEN 'HIGH'
+            WHEN ED.PCT <= 0.75
+            THEN 'MEDIUM'
+            ELSE 'LOW'
+        END AS COLONY_NAME
+FROM 
+(
+    SELECT  ID, 
+            SIZE_OF_COLONY,
+            PERCENT_RANK() OVER (ORDER BY SIZE_OF_COLONY DESC) AS PCT
     FROM ECOLI_DATA
-) AS ER
-ORDER BY ER.ID
+) AS ED
+ORDER BY ID ASC

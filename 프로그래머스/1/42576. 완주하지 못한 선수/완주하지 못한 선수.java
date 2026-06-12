@@ -1,21 +1,20 @@
 import java.util.*;
-
 class Solution {
     public String solution(String[] participant, String[] completion) {
-        String answer = "";
-        
         Arrays.sort(participant);
         Arrays.sort(completion);
         
-        int findIdx = -1;
-        
+        String answer = "";
         for(int i = 0; i < completion.length; i++){
-            if(!completion[i].equals(participant[i])){
-                findIdx = i;
+            if(!participant[i].equals(completion[i])){
+                answer = participant[i];
                 break;
             }
         }
+        if(answer.equals("")){
+            answer = participant[participant.length-1];
+        }
         
-        return findIdx == -1 ? participant[participant.length-1] : participant[findIdx];
+        return answer;
     }
 }

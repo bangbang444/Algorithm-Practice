@@ -3,11 +3,13 @@ class Solution {
     public boolean solution(String[] phone_book) {
         Arrays.sort(phone_book);
         
-        for(int i = 0; i < phone_book.length-1; i++){
-            String str1 = phone_book[i];
-            String str2 = phone_book[i+1];
-            
-            if(str1.startsWith(str2) || str2.startsWith(str1)) return false;
+        for(int i = 0; i < phone_book.length; i++){
+            for(int j = i+1; j < phone_book.length; j++){
+                if(phone_book[i].startsWith(phone_book[j]) || phone_book[j].startsWith(phone_book[i])){
+                    return false;
+                }
+                break;
+            }
         }
         
         return true;

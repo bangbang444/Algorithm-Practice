@@ -2,13 +2,13 @@ import java.util.*;
 class Solution {
     public int solution(int[] d, int budget) {
         Arrays.sort(d);
-        int use = 0;
+        int leftBudget = budget;
         int count = 0;
-        for(int m : d){
-            if(use + m <= budget){
-                use += m;
+        for(int i = 0; i < d.length; i++){
+            if(leftBudget - d[i] >= 0){
+                leftBudget -= d[i];
                 count++;
-            }else break;
+            }
         }
         
         return count;
